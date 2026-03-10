@@ -1,6 +1,11 @@
 // pair sum
 // it has to be a sorted array.
 
+/* 
+	Input: 2 7 11 13 15 target = 22
+	Output: Indexs are: 1 and 4
+*/
+
 # include <iostream>
 # include <vector>
 using namespace std;

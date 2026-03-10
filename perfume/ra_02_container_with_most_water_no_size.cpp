@@ -1,5 +1,10 @@
 // container with most water
 
+/*
+	Input: 1 8 6 2 5 4 8 3 7
+	Output: 49
+*/
+
 # include <iostream>
 # include <vector>
 # include <sstream>
@@ -7,17 +12,16 @@ using namespace std;
 
 int main(){
 	
-	// Read input line by line until EOF
-	vector<int> vec;
-	int num;
-	while(cin >> num){
-		vec.push_back(num);
+	vector <int> vec;
+	string line;
+	getline(cin, line);
+	stringstream ss(line);
+	int x;
+	while(ss >> x){
+		vec.push_back(x);
 	}
-	int n = vec.size();
 
-	cout << endl;
-
-	int l = 0, r = n-1;
+	int l = 0, r = vec.size()-1;
 	int ans = 0, maxi = 0;
 
 	while(l < r){

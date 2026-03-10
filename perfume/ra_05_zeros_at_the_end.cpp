@@ -1,5 +1,10 @@
 // zeros at the end.
 
+/*
+	Input: 1 0 2 0 3 0
+	Output: 1 2 3 0 0 0
+*/
+
 # include <iostream>
 # include <vector>
 # include <sstream>
