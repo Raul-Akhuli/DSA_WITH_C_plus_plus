@@ -1,53 +1,55 @@
 // aggressive cows
+/*
+	I/p: 1,2,4,8,9
+	 3
+	O/p: 3
+
+*/
+
+
+// Aggressive cows
 
 # include <iostream>
-# include <vector>
 # include <sstream>
+# include <vector>
 # include <algorithm>
 using namespace std;
 
+bool canWePlace(vector <int> &stall, int n, int cow, int dist){
 
-
-bool canWePlace(vector <int>& vec, int n, int cow, int dist){
-	
-	int nCow = 1, limit = vec[0];
+	int nCow = 1, limit = stall[0];
 	
 	for(int i = 1; i < n; i++){
 	
-		if(vec[i] - limit >= dist){
+		if(stall[i] - limit >= dist){
 		
 			nCow++;
-			limit = vec[i];
+			limit = stall[i];
 			
-			if(nCow >= cow) return true;                // optimization.
+			if(nCow >= cow) return true;
 		}
 	}
 	return false;
-
 }
 
 
-
-
-
-
-int goToBinary(vector <int>& vec, int cow){
-
-	int n = vec.size();
+int goToBinary(vector <int> &stall, int cow){
+	
+	int n = stall.size();
 
 	if(cow > n){
 		return -1;
 	}
-
-	int l = 1, r = vec[n-1] - vec[0];
 	
-	while(l <= r){
+	int l = 1, r = stall[n-1] - stall[0];
 		
-		int mid = l + (r-l)/2;                            // O(n log d). 
-		if(canWePlace(vec, n, cow, mid)){                 
-		                                               
+	while(l <= r){
+	
+		int mid = l + (r-l)/2;
+		if(canWePlace(stall, n, cow, mid)){       // n log D
 			l = mid+1;
 		}
+
 		else{
 		
 			r = mid-1;
@@ -55,11 +57,6 @@ int goToBinary(vector <int>& vec, int cow){
 	}
 	return r;
 }
-
-
-
-
-
 
 
 int main(){
@@ -71,31 +68,31 @@ int main(){
 
 	stringstream ss(line);
 	string token;
-
+	
 	while(getline(ss, token, ',')){
 	
 		vec.push_back(stoi(token));
 	}
-
+	
 	if(vec.empty()){
 	
-		cout << "no stall provided." << endl;
+		cout << "no stall provided" << endl;
 		return 0;
 	}
-
+	
+	
 	int cow;
-	cout << "enter no of cows: ";
+	cout << "enter no of cow: ";
 	cin >> cow;
 
-	if(cow <= 1){                                  
+	if(cow <= 1){
 	
-		cout << "For calculation of distance min 2 cows required." << endl;
+		cout << "invalid no of cow." << endl;
 		return 0;
 	}
 	
-	sort(vec.begin(), vec.end());                // O(n log n).
-	
+	sort(vec.begin(), vec.end());             // n log n
 	cout << goToBinary(vec, cow) << endl;
-
+	
 	return 0;
 }
