@@ -26,7 +26,7 @@ void bubbleSort(vector <int> &vec){
 				isSwap = true;
 			}
 		}
-		if(!isSwap) break;
+		if(!isSwap) return; // if no swap means array is already sorted.
 	}
 	
 }
